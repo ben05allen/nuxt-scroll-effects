@@ -1,15 +1,20 @@
 <template>
-  <div class="mx-20">
-    <h1 class="text-4xl text-red-400 my-40">
-      This is a heading
-    </h1>
-    <ScrollEffect1 />
-    <div class="my-40 bg-blue-400 py-72 w-full">
-      a big blue box
-    </div>
-    <div ref="demo" class="my-40 bg-pink-300 py-60 w-40 demo">
-      a smaller red box
-    </div>
+  <div>
+    <section class="mx-20 top">
+      <h1 class="text-4xl text-red-400 my-40">
+        This is a heading
+      </h1>
+      <ScrollEffect1 />
+      <div class="my-40 bg-blue-400 py-72 w-full">
+        a big blue box
+      </div>
+    </section>
+    <section class="px-20 bubble">
+      <h2 class="text-2xl text-green-300">the next section</h2>
+      <div ref="demo" class="my-40 bg-pink-300 py-60 w-40 demo">
+        a smaller red box
+      </div>
+    </section>
   </div>
 </template>
 
@@ -43,6 +48,26 @@ onMounted(() => {
 </script>
 
 <style scoped>
+section {
+  position: relative;
+}
+.bubble {
+  background-color: aliceblue;
+}
+
+.bubble::after {
+    content: '';
+    border-top-left-radius: 75% 100%;
+    border-top-right-radius: 75% 100%;
+    position: absolute;
+    top: -4em;
+    left: 0;
+    height: 4em;
+    width: 100%;
+    z-index: -1;
+    background-color: aliceblue;
+}
+
 .animate-delay {
   animation-duration: 5s;
   animation-fill-mode: both;
