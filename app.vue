@@ -1,106 +1,60 @@
 <template>
   <div>
     <section class="mx-20 top">
-      <h1 class="text-4xl text-red-400 my-40">
-        This is a heading
-      </h1>
-      <ScrollEffect1 />
-      <div class="my-40 bg-blue-400 py-72 w-full">
-        a big blue box
-      </div>
+      <h1 class="text-4xl text-red-400 my-40">This is a heading</h1>
+      <div class="my-40 bg-blue-400 py-72 w-full">a big blue box</div>
     </section>
     <section class="px-20 bubble">
       <h2 class="text-2xl text-green-300">the next section</h2>
-      <div ref="demo" class="my-40 bg-pink-300 py-60 w-40 demo">
-        a smaller red box
-      </div>
+      <ScrollEffect1>
+        <div class="my-40 bg-pink-300 py-24 text-center w-40">
+          a smaller red box
+        </div>
+      </ScrollEffect1>
     </section>
+
+    <section class="lastSection">This is the last section</section>
   </div>
 </template>
-
-<script setup>
-
-import { onMounted, ref } from 'vue';
-
-const demo = ref('');
-
-onMounted(() => {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // add 'animate-delay' class to the target
-          entry.target.classList.add('animate-delay');
-        }
-      });
-    },
-    {
-      threshold: 0.5,
-    }
-  );
-
-  // observe each element
-  if (demo.value) {
-    observer.observe(demo.value);
-  }
-});
-
-</script>
 
 <style scoped>
 section {
   position: relative;
 }
+.lastSection {
+  margin: 10rem 10rem;
+}
+.lastSection::before {
+  content: "👌🏻 ";
+}
+.lastSection::after {
+  content: " 😀";
+}
 .bubble {
   background-color: aliceblue;
 }
-
+.bubble::before {
+  content: "";
+  border-top-left-radius: 75% 100%;
+  border-top-right-radius: 75% 100%;
+  position: absolute;
+  top: -5em;
+  left: 0;
+  height: 5em;
+  width: 100%;
+  z-index: -1;
+  background-color: aliceblue;
+}
 .bubble::after {
-    content: '';
-    border-top-left-radius: 75% 100%;
-    border-top-right-radius: 75% 100%;
-    position: absolute;
-    top: -4em;
-    left: 0;
-    height: 4em;
-    width: 100%;
-    z-index: -1;
-    background-color: aliceblue;
-}
-
-.animate-delay {
-  animation-duration: 5s;
-  animation-fill-mode: both;
-  animation-name: animate-delay;
-}
-
-@keyframes animate-delay {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-    -webkit-transform: translateY(40px);
-    -moz-transform: translateY(20px);
-    -ms-transform: translateY(20px);
-    -o-transform: translateY(20px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
-  }
-}
-
-.demo {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(20px);
-  -webkit-transform: translateY(20px);
-  -moz-transform: translateY(20px);
-  -ms-transform: translateY(20px);
-  -o-transform: translateY(20px);
+  content: "";
+  border-bottom-left-radius: 75% 100%;
+  border-bottom-right-radius: 75% 100%;
+  position: absolute;
+  bottom: -2em;
+  left: 0;
+  height: 2em;
+  width: 100%;
+  z-index: 1;
+  background-color: aliceblue;
 }
 </style>
